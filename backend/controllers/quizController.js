@@ -2,7 +2,7 @@ const Quiz = require("../models/Quiz");
 
 exports.createQuiz = async (req, res) => {
   try {
-    const { title, description, questions } = req.body;
+    const { title, description, category, questions } = req.body;
 
     if (!title || !questions || questions.length === 0) {
       return res.status(400).json({ message: "Quiz data incomplete" });
@@ -11,6 +11,7 @@ exports.createQuiz = async (req, res) => {
     const quiz = await Quiz.create({
       title,
       description,
+      category: category || "General",
       questions,
       createdBy: req.user,
     });
@@ -23,7 +24,7 @@ exports.createQuiz = async (req, res) => {
 
 exports.getAllQuizzes = async (req, res) => {
   try {
-    const quizzes = await Quiz.find().select("title description");
+    const quizzes = await Quiz.find().select("title description category");
     res.status(200).json(quizzes);
   } catch (error) {
     res.status(500).json({ message: "Server error" });

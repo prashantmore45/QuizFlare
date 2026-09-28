@@ -1,6 +1,7 @@
 import { useState } from "react";
 import API from "../services/api";
 import { Link, useNavigate } from "react-router-dom";
+import Layout from "../components/Layout";
 
 function Register() {
   const navigate = useNavigate();
@@ -21,39 +22,65 @@ function Register() {
   };
 
   return (
-    
-    <div className="container" style={{ marginTop: "50px", width: "450px", marginBottom: "50px" }}>
-
-      <div style={{ marginBottom: "30px" }}>
-        <span style={{ fontSize: "3rem", display: "block" }}>⚡</span>
-        <h1 style={{ 
-          margin: "0", 
-          background: "linear-gradient(90deg, #8b5cf6, #3b82f6)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          fontSize: "2rem"
-        }}>
-          Quiz Master Pro
-        </h1>
+    <Layout>
+      <div className="auth-container">
+        <div className="auth-header">
+          <span className="auth-icon">⚡</span>
+          <h1 className="auth-title">Quiz Master Pro</h1>
+        </div>
+        
+        <h2 style={{ fontSize: "1.5rem", marginBottom: 8 }}>Create Account</h2>
+        <p className="auth-subtitle">Join our community and start creating quizzes</p>
+        
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <div className="auth-form-group">
+            <label htmlFor="name">Full Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="John Doe"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          
+          <div className="auth-form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          
+          <div className="auth-form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Create a strong password"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          
+          <button type="submit" className="auth-submit-btn">Create Account</button>
+        </form>
+        
+        <div className="auth-link">
+          Already have an account? <Link to="/login">Sign in here</Link>
+        </div>
+        
+        <div className="auth-footer">
+          Built with ❤️ by Quiz Masters
+        </div>
       </div>
-
-      <h2>Create Account</h2>
-      <p style={{ color: "#94a3b8", marginBottom: "20px" }}>Join us to create and take quizzes</p>
-      
-      <form onSubmit={handleSubmit}>
-        <input name="name" placeholder="Full Name" onChange={handleChange} required />
-        <input name="email" type="email" placeholder="Email Address" onChange={handleChange} required />
-        <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
-        <button type="submit">Register</button>
-        <p style={{ marginTop: "30px", fontSize: "0.8rem", color: "#64748b" }}>
-          Built by Prashant More
-        </p>
-      </form>
-      
-      <p style={{ marginTop: "20px" }}>
-        Already have an account? <Link to="/login">Login here</Link>
-      </p>
-    </div>
+    </Layout>
   );
 }
 

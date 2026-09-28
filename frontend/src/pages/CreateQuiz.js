@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
+import Layout from "../components/Layout";
 
 function CreateQuiz() {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("General");
   
   const [questionText, setQuestionText] = useState("");
   const [option1, setOption1] = useState("");
@@ -37,7 +39,12 @@ function CreateQuiz() {
     setOption3("");
     setOption4("");
     setCorrectAnswer("");
-    alert("Question Added!");
+  };
+
+  const removeQuestion = (index) => {
+    const newQs = [...questions];
+    newQs.splice(index, 1);
+    setQuestions(newQs);
   };
 
   const submitQuiz = async () => {
@@ -50,6 +57,7 @@ function CreateQuiz() {
       await API.post("/quizzes", {
         title,
         description,
+        category,
         questions,
       });
       alert("Quiz Created Successfully!");
@@ -60,64 +68,91 @@ function CreateQuiz() {
   };
 
   return (
-    <div className="container" style={{ maxWidth: "600px", marginTop: "50px", marginBottom: "50px" }}>
-      <h2 style={{ marginTop: "10px", marginBottom: "30px" }}>Create a New Quiz</h2>
-      
-      <input
-        placeholder="Quiz Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        style={{ display: "block", marginBottom: "10px", width: "100%" }}
-      />
-      <input
-        placeholder="Description (Optional)"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        style={{ display: "block", marginBottom: "20px", width: "100%" }}
-      />
+    <Layout>
+      <div className="container" style={{ maxWidth: "800px" }}>
+        <h2 style={{ textAlign: "center", marginBottom: "32px", fontSize: "2rem" }}>Create a New Quiz</h2>
+        
+        <div className="glass-panel" style={{ padding: "32px", marginBottom: "32px" }}>
+          <h3 style={{ marginBottom: "16px", color: "var(--accent-color)" }}>Quiz Details</h3>
+          <input
+            placeholder="Quiz Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            style={{ marginBottom: "16px" }}
+          />
+          <textarea
+            placeholder="Description (Optional)"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows="3"
+            style={{ resize: "none", marginBottom: "16px", width: "100%" }}
+          />
+          <div className="form-group" style={{ marginBottom: "0" }}>
+            <label style={{ marginBottom: "8px", display: "block" }}>Quiz Category</label>
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+              <option value="General">General</option>
+              <option value="Programming">Programming</option>
+              <option value="Math">Math</option>
+              <option value="Science">Science</option>
+              <option value="History">History</option>
+              <option value="Entertainment">Entertainment</option>
+            </select>
+          </div>
+        </div>
 
-      <hr />
+        {questions.length > 0 && (
+          <div style={{ marginBottom: "32px" }}>
+            <h3 style={{ marginBottom: "16px" }}>Added Questions ({questions.length})</h3>
+            {questions.map((q, i) => (
+              <div key={i} className="question-block">
+                <div className="question-header">
+                  <h4>Question {i + 1}</h4>
+                  <button className="remove-question-btn" onClick={() => removeQuestion(i)}>Remove</button>
+                </div>
+                <p style={{ color: "#fff", fontWeight: "500" }}>{q.questionText}</p>
+                <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", margin: 0 }}>Answer: <span style={{ color: "#4CAF50" }}>{q.correctAnswer}</span></p>
+              </div>
+            ))}
+          </div>
+        )}
 
-      <h3>Add Question ({questions.length} added so far)</h3>
-      
-      <input
-        placeholder="Question Text (e.g., What is 2+2?)"
-        value={questionText}
-        onChange={(e) => setQuestionText(e.target.value)}
-        style={{ width: "100%", marginBottom: "10px" }}
-      />
-      
-      <div className="options-grid-form">
-        <input placeholder="Option A" value={option1} onChange={(e) => setOption1(e.target.value)} />
-        <input placeholder="Option B" value={option2} onChange={(e) => setOption2(e.target.value)} />
-        <input placeholder="Option C" value={option3} onChange={(e) => setOption3(e.target.value)} />
-        <input placeholder="Option D" value={option4} onChange={(e) => setOption4(e.target.value)} />
+        <div className="glass-panel" style={{ padding: "32px", marginBottom: "32px" }}>
+          <h3 style={{ marginBottom: "24px" }}>Add New Question</h3>
+          <input
+            placeholder="Question Text (e.g., What is 2+2?)"
+            value={questionText}
+            onChange={(e) => setQuestionText(e.target.value)}
+            style={{ marginBottom: "16px" }}
+          />
+          
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "16px" }}>
+            <input placeholder="Option A" value={option1} onChange={(e) => setOption1(e.target.value)} />
+            <input placeholder="Option B" value={option2} onChange={(e) => setOption2(e.target.value)} />
+            <input placeholder="Option C" value={option3} onChange={(e) => setOption3(e.target.value)} />
+            <input placeholder="Option D" value={option4} onChange={(e) => setOption4(e.target.value)} />
+          </div>
+          
+          <div className="form-group" style={{ marginBottom: "24px" }}>
+            <label style={{ marginBottom: "8px", display: "block" }}>Select Correct Answer:</label>
+            <select value={correctAnswer} onChange={(e) => setCorrectAnswer(e.target.value)}>
+              <option value="">-- Choose Option --</option>
+              {option1 && <option value={option1}>Option A: {option1}</option>}
+              {option2 && <option value={option2}>Option B: {option2}</option>}
+              {option3 && <option value={option3}>Option C: {option3}</option>}
+              {option4 && <option value={option4}>Option D: {option4}</option>}
+            </select>
+          </div>
+          
+          <button className="add-question-btn" onClick={addQuestion} style={{ width: "100%" }}>
+            + Add Question to Quiz
+          </button>
+        </div>
+
+        <button className="btn-primary-large" onClick={submitQuiz} style={{ width: "100%" }}>
+          PUBLISH QUIZ 🚀
+        </button>
       </div>
-
-      <p>Correct Answer:</p>
-      <select 
-        value={correctAnswer} 
-        onChange={(e) => setCorrectAnswer(e.target.value)}
-        style={{ marginBottom: "10px", padding: "5px" }}
-      >
-        <option value="">Select Correct Option</option>
-        <option value={option1}>Option A</option>
-        <option value={option2}>Option B</option>
-        <option value={option3}>Option C</option>
-        <option value={option4}>Option D</option>
-      </select>
-
-      <button onClick={addQuestion} style={{ display: "block", marginBottom: "20px" }}>
-        Add Question to List
-      </button>
-
-      <hr />
-
-      {/* SECTION 3: Submit Everything */}
-      <button onClick={submitQuiz} style={{ backgroundColor: "#4CAF50", width: "100%" }}>
-        PUBLISH QUIZ
-      </button>
-    </div>
+    </Layout>
   );
 }
 

@@ -9,6 +9,10 @@ const quizSchema = new mongoose.Schema(
     description: {
       type: String,
     },
+    category: {
+      type: String,
+      default: "General"
+    },
     questions: [
       {
         questionText: {
