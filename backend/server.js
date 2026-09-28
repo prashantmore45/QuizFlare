@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const quizRoutes = require("./routes/quizRoutes");
 const resultRoutes = require("./routes/resultRoutes");
+const statsRoutes = require("./routes/statsRoutes");
 
 connectDB();
 
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/quizzes", quizRoutes);
 app.use("/api/results", resultRoutes);
+app.use("/api/stats", statsRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
