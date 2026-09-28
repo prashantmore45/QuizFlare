@@ -24,7 +24,7 @@ exports.createQuiz = async (req, res) => {
 
 exports.getAllQuizzes = async (req, res) => {
   try {
-    const quizzes = await Quiz.find().select("title description category");
+    const quizzes = await Quiz.find().select("title description category createdBy");
     res.status(200).json(quizzes);
   } catch (error) {
     res.status(500).json({ message: "Server error" });

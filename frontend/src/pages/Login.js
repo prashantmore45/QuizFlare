@@ -16,7 +16,7 @@ function Login() {
     e.preventDefault();
     try {
       const res = await API.post("/auth/login", formData);
-      login(res.data.token);
+      login(res.data.token, res.data.user);
       navigate("/dashboard");
     } catch (error) {
       alert(error.response?.data?.message || "Login failed");
