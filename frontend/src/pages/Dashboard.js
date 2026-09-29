@@ -48,7 +48,6 @@ function Dashboard() {
   });
   
   const avgScore = totalMax > 0 ? Math.round((totalScore / totalMax) * 100) : 0;
-  const recentTwoResults = results.slice(0, 2);
   const recommendedQuizzes = quizzes.slice(0, 3);
 
   return (

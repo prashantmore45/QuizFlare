@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
-import { PlayCircle, Target, Clock, AlertCircle, FileText, CheckCircle2 } from "lucide-react";
+import { PlayCircle, Target, Clock, AlertCircle, FileText } from "lucide-react";
 
 const CATEGORIES = ["All", "General", "Programming", "Math", "Science", "History", "Entertainment"];
 

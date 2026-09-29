@@ -50,7 +50,6 @@ function Progress() {
   }
 
   // Analytics Math
-  const totalTaken = results.length;
   let totalScore = 0;
   let totalMax = 0;
   let perfectScores = 0;

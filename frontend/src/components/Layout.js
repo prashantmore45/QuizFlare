@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { LayoutDashboard, PenLine, Target, Trophy, History, TrendingUp, PanelLeftClose, PanelLeftOpen, Shield, LogOut, User, Menu, X, Sparkles } from "lucide-react";
+import { LayoutDashboard, PenLine, Target, Trophy, History, TrendingUp, PanelLeftClose, PanelLeftOpen, Shield, LogOut, User, Menu, Sparkles } from "lucide-react";
 import "../App.css";
 
 const Layout = ({ children }) => {

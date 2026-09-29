@@ -43,6 +43,7 @@ function TakeQuiz() {
     }, 1000);
 
     return () => clearInterval(timerId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft, quiz, current, isTransitioning]);
 
   if (!quiz) return <Layout><div style={{textAlign: "center", padding: "4rem", color: "var(--text-muted)"}}>Loading Quiz...</div></Layout>;
