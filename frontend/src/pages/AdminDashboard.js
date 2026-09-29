@@ -43,14 +43,14 @@ function AdminDashboard() {
 
   return (
     <Layout>
-      <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "2rem" }}>
+      <div style={{ maxWidth: "1000px", margin: "0 auto", paddingBottom: "4rem" }}>
         
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2rem" }}>
+        <div className="wizard-header">
           <div>
             <h1 style={{ fontSize: "2rem", color: "var(--text-main)", marginBottom: "0.5rem" }}>Admin Dashboard</h1>
             <p style={{ color: "var(--text-muted)" }}>Manage contact form submissions and user feedback.</p>
           </div>
-          <div className="glass-panel" style={{ padding: "1rem 1.5rem", display: "flex", alignItems: "center", gap: "12px", background: "rgba(16, 185, 129, 0.1)", border: "1px solid rgba(16, 185, 129, 0.3)" }}>
+          <div className="glass-panel" style={{ padding: "1rem 1.5rem", display: "flex", alignItems: "center", gap: "12px", background: "rgba(16, 185, 129, 0.1)", border: "1px solid rgba(16, 185, 129, 0.3)", width: "100%", maxWidth: "300px" }}>
             <Mail size={24} color="#10b981" />
             <div>
               <div style={{ fontSize: "1.2rem", fontWeight: "bold", color: "var(--text-main)" }}>{messages.length}</div>
@@ -69,7 +69,7 @@ function AdminDashboard() {
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {messages.map((msg) => (
               <div key={msg._id} className="glass-panel" style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid rgba(255,255,255,0.1)", paddingBottom: "1rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "var(--glass-border)", paddingBottom: "1rem" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                     <div style={{ width: "40px", height: "40px", borderRadius: "50%", background: "var(--accent-color)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: "bold" }}>
                       {msg.name.charAt(0).toUpperCase()}

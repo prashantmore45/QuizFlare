@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import API from "../services/api";
 import { Link, useNavigate } from "react-router-dom"; 
 import Layout from "../components/Layout";
@@ -8,8 +8,18 @@ import { Mail, Lock, ArrowRight, Zap } from "lucide-react";
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, isLoggedIn, user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
+  
+  useEffect(() => {
+    if (isLoggedIn) {
+      if (user?.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/dashboard");
+      }
+    }
+  }, [isLoggedIn, navigate, user]);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,17 +44,10 @@ function Login() {
 
   return (
     <Layout>
-      <div style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "calc(100vh - 185px)", // accounting for header & margin
-        position: "relative",
-        padding: "2rem"
-      }}>
+      <div className="auth-page-container">
         
         {/* Background abstract shapes */}
-        <div style={{
+        <div className="hide-on-mobile" style={{
           position: "absolute",
           width: "300px",
           height: "300px",
@@ -71,35 +74,24 @@ function Login() {
           animation: "float 8s ease-in-out infinite reverse"
         }}></div>
 
-        <div className="glass-panel" style={{
+        <div className="glass-panel auth-card" style={{
           width: "100%",
           maxWidth: "450px",
-          padding: "3rem",
           position: "relative",
           zIndex: 1,
           borderTop: "1px solid rgba(255,255,255,0.1)",
           borderLeft: "1px solid rgba(255,255,255,0.05)"
         }}>
           
-          <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-            <div style={{ 
-              width: "60px", 
-              height: "60px", 
-              borderRadius: "16px", 
-              background: "var(--accent-gradient)", 
-              display: "flex", 
-              alignItems: "center", 
-              justifyContent: "center",
-              margin: "0 auto 1.5rem",
-              boxShadow: "0 10px 25px rgba(139, 92, 246, 0.3)"
-            }}>
+          <div className="auth-header">
+            <div className="auth-icon">
               <Zap size={30} color="#fff" />
             </div>
             <h1 style={{ fontSize: "2rem", fontWeight: "bold", color: "var(--text-main)", marginBottom: "0.5rem" }}>Welcome Back</h1>
             <p style={{ color: "var(--text-muted)", fontSize: "1rem" }}>Sign in to continue your quiz journey</p>
           </div>
 
-          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+          <form onSubmit={handleSubmit} className="auth-form">
             
             <div style={{ position: "relative" }}>
               <label htmlFor="email" style={{ display: "block", marginBottom: "8px", fontSize: "0.9rem", color: "var(--text-main)", fontWeight: "500" }}>Email Address</label>
@@ -139,7 +131,7 @@ function Login() {
             
             <button 
               type="submit" 
-              className="btn-primary" 
+              className="btn-primary auth-submit-btn" 
               disabled={isLoading}
               style={{ 
                 height: "48px", 

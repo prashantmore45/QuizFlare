@@ -78,7 +78,7 @@ function CreateQuiz() {
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         
         {/* WIZARD HEADER */}
-        <div style={{ marginBottom: "2rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div className="wizard-header">
           <div>
             <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", fontFamily: "Georgia, serif", color: "var(--text-main)", marginBottom: "0.5rem" }}>
               Quiz Creator
@@ -160,7 +160,7 @@ function CreateQuiz() {
 
         {/* STEP 2: QUESTION BUILDER */}
         {step === 2 && (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", animation: "fadeIn 0.4s ease" }}>
+          <div className="create-quiz-grid">
             
             {/* LEFT: ADD QUESTION FORM */}
             <div className="glass-panel" style={{ padding: "2rem", alignSelf: "start", position: "sticky", top: "100px" }}>

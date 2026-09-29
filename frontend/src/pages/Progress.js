@@ -54,7 +54,7 @@ function Progress() {
   let totalScore = 0;
   let totalMax = 0;
   let perfectScores = 0;
-  
+
   results.forEach(r => {
     totalScore += r.score;
     totalMax += r.totalQuestions;
@@ -62,9 +62,9 @@ function Progress() {
       perfectScores++;
     }
   });
-  
+
   const avgAccuracy = totalMax > 0 ? Math.round((totalScore / totalMax) * 100) : 0;
-  
+
   // Data for Chart (Last 10 quizzes)
   const chartData = results.slice(-10).map(r => ({
     name: r.quiz?.title ? r.quiz.title.substring(0, 10) + '...' : 'Quiz',
@@ -74,10 +74,10 @@ function Progress() {
   return (
     <Layout>
       <div style={{ width: "100%", maxWidth: "1000px", margin: "0 auto", paddingBottom: "4rem" }}>
-        
+
         {/* HEADER */}
         <div style={{ marginBottom: "3rem", animation: "fadeIn 0.5s ease" }}>
-          <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", fontFamily: "Georgia, serif", color: "var(--text-main)", marginBottom: "0.5rem", display: "flex", alignItems: "center", gap: "12px" }}>
+          <h1 className="section-title" style={{ display: "flex", alignItems: "center", gap: "12px", fontFamily: "Georgia, serif" }}>
             <TrendingUp size={36} color="var(--accent-color)" /> Performance Analytics
           </h1>
           <p style={{ color: "var(--text-muted)", fontSize: "1.1rem" }}>
@@ -94,7 +94,7 @@ function Progress() {
             </div>
             <h2 style={{ margin: 0, fontSize: "2.5rem", color: "var(--text-main)" }}>{totalScore * 10}</h2>
           </div>
-          
+
           <div className="glass-panel" style={{ padding: "1.5rem", borderTop: "4px solid #10b981" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
               <p style={{ color: "var(--text-muted)", margin: 0, fontWeight: "600", fontSize: "0.9rem", textTransform: "uppercase" }}>Accuracy</p>
@@ -115,24 +115,24 @@ function Progress() {
         {/* CHART SECTION */}
         <div className="glass-panel" style={{ padding: "2.5rem", marginBottom: "3rem" }}>
           <h3 style={{ margin: "0 0 2rem 0", color: "var(--text-main)", fontSize: "1.3rem" }}>Recent Performance Trend</h3>
-          
-          <div style={{ display: "flex", alignItems: "flex-end", height: "250px", gap: "10px", paddingBottom: "10px", borderBottom: "1px solid var(--border-color)", position: "relative" }}>
+
+          <div style={{ display: "flex", alignItems: "flex-end", height: "250px", gap: "10px", paddingBottom: "10px", borderBottom: "1px solid var(--border-color)", position: "relative", marginLeft: "40px" }}>
             {/* Y-Axis lines */}
             <div style={{ position: "absolute", width: "100%", height: "1px", background: "var(--border-color)", top: "0", opacity: 0.5 }}></div>
             <div style={{ position: "absolute", width: "100%", height: "1px", background: "var(--border-color)", top: "50%", opacity: 0.5 }}></div>
-            
-            <div style={{ position: "absolute", left: "-35px", top: "-10px", color: "var(--text-muted)", fontSize: "0.8rem" }}>100%</div>
-            <div style={{ position: "absolute", left: "-30px", top: "calc(50% - 10px)", color: "var(--text-muted)", fontSize: "0.8rem" }}>50%</div>
-            <div style={{ position: "absolute", left: "-25px", bottom: "0", color: "var(--text-muted)", fontSize: "0.8rem" }}>0%</div>
+
+            <div style={{ position: "absolute", left: "-60px", top: "-10px", color: "var(--text-muted)", fontSize: "0.8rem", width: "35px", textAlign: "right" }}>100%</div>
+            <div style={{ position: "absolute", left: "-60px", top: "calc(50% - 10px)", color: "var(--text-muted)", fontSize: "0.8rem", width: "35px", textAlign: "right" }}>50%</div>
+            <div style={{ position: "absolute", left: "-60px", bottom: "0", color: "var(--text-muted)", fontSize: "0.8rem", width: "35px", textAlign: "right" }}>0%</div>
 
             {chartData.map((data, idx) => (
               <div key={idx} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", height: "100%", zIndex: 1, group: "bar" }}>
-                <div 
+                <div
                   title={`${data.percentage}%`}
-                  style={{ 
-                    width: "100%", 
-                    maxWidth: "50px", 
-                    height: `${data.percentage}%`, 
+                  style={{
+                    width: "100%",
+                    maxWidth: "50px",
+                    height: `${data.percentage}%`,
                     background: data.percentage >= 80 ? "var(--accent-gradient)" : data.percentage >= 50 ? "rgba(139, 92, 246, 0.5)" : "rgba(139, 92, 246, 0.2)",
                     borderRadius: "4px 4px 0 0",
                     transition: "height 1s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -144,7 +144,7 @@ function Progress() {
               </div>
             ))}
           </div>
-          
+
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: "1rem" }}>
             <span style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>Older</span>
             <span style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>Newer</span>

@@ -37,10 +37,6 @@ function Home() {
         marginTop: "-32px" // Counteracts the layout-main padding
       }}>
         <div className="hero-content-wrapper" style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "60px",
-          alignItems: "stretch",
           maxWidth: "1400px",
           margin: "0 auto",
           width: "95%",
@@ -60,11 +56,11 @@ function Home() {
               <span className="hero-icon" style={{ marginBottom: 0, marginRight: "12px" }}>⚡</span>
               <span style={{ color: "var(--accent-color)", fontWeight: "bold", letterSpacing: "1px", textTransform: "uppercase" }}>The #1 Quiz Platform</span>
             </div>
-            <h1 className="hero-title" style={{ fontSize: "4.5rem", marginBottom: "24px", lineHeight: "1.1", paddingBottom: "15px" }}>Master Your Knowledge</h1>
-            <p className="hero-subtitle" style={{ fontSize: "1.25rem", maxWidth: "100%", marginBottom: "40px" }}>
+            <h1 className="hero-title" style={{ marginBottom: "24px", lineHeight: "1.1", paddingBottom: "15px" }}>Master Your Knowledge</h1>
+            <p className="hero-subtitle" style={{ maxWidth: "100%", marginBottom: "40px" }}>
               Create engaging quizzes, challenge your friends, and master your knowledge with our powerful premium quiz platform.
             </p>
-            <div className="hero-buttons" style={{ justifyContent: "flex-start", display: "flex", gap: "16px" }}>
+            <div className="hero-buttons">
               {isLoggedIn ? (
                 <button className="btn-primary-large" onClick={() => navigate("/dashboard")}>Go to Dashboard 🚀</button>
               ) : (
@@ -186,7 +182,11 @@ function Home() {
       <div className="section-divider"></div>
 
       {/* Stats Section */}
-      <div className="home-section home-stats">
+      <div className="home-section" style={{ textAlign: "center", paddingBottom: "1rem" }}>
+        <h2 className="section-title">Platform Impact</h2>
+        <p style={{ color: "var(--text-muted)" }}>Join thousands of users who are already mastering their knowledge with QuizFlare.</p>
+      </div>
+      <div className="home-section home-stats" style={{ paddingTop: 0 }}>
         <div className="stat-card">
           <div className="stat-number">{stats.users}</div>
           <div className="stat-label">Active Users</div>

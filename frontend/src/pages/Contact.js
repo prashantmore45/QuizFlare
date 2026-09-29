@@ -25,7 +25,7 @@ function Contact() {
 
   return (
     <Layout>
-      <div style={{ maxWidth: "600px", margin: "0 auto", padding: "4rem 2rem" }}>
+      <div className="contact-container" style={{ maxWidth: "600px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
           <div style={{ 
             width: "60px", 
@@ -72,7 +72,7 @@ function Contact() {
             </button>
           </div>
         ) : (
-          <div style={{ padding: "0 2rem" }}>
+          <div className="form-container">
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
               <div>
                 <label style={{ display: "block", marginBottom: "8px", fontSize: "0.9rem", color: "var(--text-main)", fontWeight: "500" }}>Your Name</label>

@@ -89,7 +89,7 @@ function Dashboard() {
             </div>
           </div>
           {/* Abstract background shapes */}
-          <div style={{ position: "absolute", right: "-5%", top: "-20%", opacity: 0.1 }}>
+          <div className="target-icon hide-on-mobile" style={{ position: "absolute", right: "-5%", top: "-20%", opacity: 0.1 }}>
              <Target size={300} />
           </div>
         </div>
@@ -171,7 +171,7 @@ function Dashboard() {
         </div>
 
         {/* 4. RECENT ACTIVITY & YOUR NUMBERS */}
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "2rem" }} className="dashboard-bottom-grid">
+        <div className="dashboard-content-grid">
           
           {/* Left Column: Recent Activity */}
           <div style={{ background: "var(--bg-surface)", border: "1px solid var(--border-color)", borderRadius: "16px", padding: "1.5rem" }}>

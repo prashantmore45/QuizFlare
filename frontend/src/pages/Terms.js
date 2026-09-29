@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 function Terms() {
   return (
     <Layout>
-      <div style={{ maxWidth: "800px", margin: "0 auto", padding: "4rem 2rem" }}>
+      <div className="content-page-container">
         <h1 style={{ fontSize: "2.5rem", marginBottom: "1rem", color: "var(--text-main)" }}>Terms of Service</h1>
         <p style={{ color: "var(--text-muted)", marginBottom: "3rem" }}>Last updated: October 2026</p>
         
