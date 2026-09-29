@@ -44,7 +44,7 @@ function Result() {
           }}>
             {percentage}%
           </h1>
-          <p style={{ fontSize: "1.2rem", margin: 0, color: "#fff" }}>
+          <p style={{ fontSize: "1.2rem", margin: 0, color: "var(--text-main)" }}>
             You got {state.score} out of {state.total} correct.
           </p>
         </div>
@@ -57,12 +57,12 @@ function Result() {
                 borderLeft: item.isCorrect ? "6px solid #4CAF50" : "6px solid #f44336",
                 borderRadius: "12px"
             }}>
-              <p style={{ fontWeight: "600", fontSize: "1.1rem", color: "#fff", marginBottom: "16px" }}>
+              <p style={{ fontWeight: "600", fontSize: "1.1rem", color: "var(--text-main)", marginBottom: "16px" }}>
                 <span style={{ color: "var(--accent-color)", marginRight: "8px" }}>Q{index + 1}.</span> 
                 {item.question}
               </p>
               
-              <div style={{ background: "rgba(0,0,0,0.2)", padding: "12px 16px", borderRadius: "8px", marginBottom: "8px" }}>
+              <div style={{ background: "var(--bg-surface)", padding: "12px 16px", borderRadius: "8px", marginBottom: "8px" }}>
                 <span style={{ color: "var(--text-muted)", fontSize: "0.9rem", display: "block", marginBottom: "4px" }}>Your Answer</span>
                 <span style={{ color: item.isCorrect ? "#4CAF50" : "#f44336", fontWeight: "500", fontSize: "1.05rem" }}>
                   {item.selected}

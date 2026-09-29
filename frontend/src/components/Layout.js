@@ -23,11 +23,11 @@ const Layout = ({ children }) => {
 
   const navItems = [
     { label: "Dashboard", path: "/dashboard", icon: <LayoutDashboard size={20} /> },
-    { label: "Progress", path: "/progress", icon: <TrendingUp size={20} /> },
-    { label: "Create Quiz", path: "/create-quiz", icon: <PenLine size={20} /> },
     { label: "Take Quiz", path: "/quizzes", icon: <Target size={20} /> },
-    { label: "Leaderboard", path: "/leaderboard", icon: <Trophy size={20} /> },
-    { label: "Results", path: "/history", icon: <History size={20} /> }
+    { label: "Create Quiz", path: "/create-quiz", icon: <PenLine size={20} /> },
+    { label: "Progress", path: "/progress", icon: <TrendingUp size={20} /> },
+    { label: "My History", path: "/history", icon: <History size={20} /> },
+    { label: "Leaderboard", path: "/leaderboard", icon: <Trophy size={20} /> }
   ];
 
   const showSidebar = isLoggedIn && location.pathname !== "/";

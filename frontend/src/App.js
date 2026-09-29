@@ -9,6 +9,7 @@ import QuizList from "./pages/QuizList";
 import TakeQuiz from "./pages/TakeQuiz";
 import Result from "./pages/Result";
 import MyHistory from "./pages/MyHistory";
+import Progress from "./pages/Progress";
 import Leaderboard from "./pages/Leaderboard";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -71,6 +72,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <MyHistory />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/progress"
+            element={
+              <ProtectedRoute>
+                <Progress />
               </ProtectedRoute>
             }
           />
