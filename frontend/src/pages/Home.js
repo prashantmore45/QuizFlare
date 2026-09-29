@@ -89,7 +89,7 @@ function Home() {
             }}></div>
             <img
               src="/hero.png"
-              alt="Quiz Master Pro Dashboard Graphic"
+              alt="QuizFlare Dashboard Graphic"
               style={{
                 width: "100%",
                 height: "100%",
@@ -211,7 +211,7 @@ function Home() {
       <div className="home-section home-cta">
         <div className="cta-content">
           <h2>Ready to Transform Your Learning?</h2>
-          <p>Join thousands of educators and students using Quiz Master Pro today.</p>
+          <p>Join thousands of educators and students using QuizFlare today.</p>
           <button className="btn-primary-large cta-btn" onClick={() => navigate(isLoggedIn ? "/dashboard" : "/register")}>
             {isLoggedIn ? "Go to Dashboard" : "Start For Free Now"}
           </button>

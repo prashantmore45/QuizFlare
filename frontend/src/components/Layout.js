@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { LayoutDashboard, PenLine, Target, Trophy, History, TrendingUp, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { LayoutDashboard, PenLine, Target, Trophy, History, TrendingUp, PanelLeftClose, PanelLeftOpen, Shield } from "lucide-react";
 import "../App.css";
 
 const Layout = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isLoggedIn, logout } = useAuth();
+  const { isLoggedIn, logout, user } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isLightMode, setIsLightMode] = useState(false);
 
@@ -27,10 +27,11 @@ const Layout = ({ children }) => {
     { label: "Create Quiz", path: "/create-quiz", icon: <PenLine size={20} /> },
     { label: "Progress", path: "/progress", icon: <TrendingUp size={20} /> },
     { label: "My History", path: "/history", icon: <History size={20} /> },
-    { label: "Leaderboard", path: "/leaderboard", icon: <Trophy size={20} /> }
+    { label: "Leaderboard", path: "/leaderboard", icon: <Trophy size={20} /> },
+    ...(user?.role === "admin" ? [{ label: "Admin", path: "/admin/dashboard", icon: <Shield size={20} color="#10b981" /> }] : [])
   ];
 
-  const showSidebar = isLoggedIn && location.pathname !== "/";
+  const showSidebar = isLoggedIn && !["/", "/terms", "/privacy", "/contact"].includes(location.pathname);
 
   return (
     <div className="layout-root">
@@ -40,7 +41,7 @@ const Layout = ({ children }) => {
             <div className="sidebar-header">
               <div className="brand" onClick={() => navigate("/")}>
                 <span className="brand-icon">⚡</span>
-                <span className="brand-text">Quiz Master Pro</span>
+                <span className="brand-text">QuizFlare</span>
               </div>
               <button className="hamburger" onClick={() => setSidebarOpen(!sidebarOpen)}>
                 {sidebarOpen ? <PanelLeftClose size={20} /> : <PanelLeftOpen size={20} />}
@@ -70,7 +71,7 @@ const Layout = ({ children }) => {
             <div className="header-left">
               {!showSidebar && (
                 <div className="brand" onClick={() => navigate("/")}>
-                  <span className="brand-icon">⚡</span> Quiz Master Pro
+                  <span className="brand-icon">⚡</span> QuizFlare
                 </div>
               )}
             </div>
@@ -116,25 +117,28 @@ const Layout = ({ children }) => {
           {!showSidebar && (
             <footer className="layout-footer" style={{
               marginTop: "4rem",
-              padding: "2rem 0",
+              padding: "3rem 4rem",
               borderTop: "1px solid var(--border-color)",
-              textAlign: "center",
-              color: "var(--text-muted)",
-              fontSize: "0.9rem",
               display: "flex",
-              flexDirection: "column",
+              justifyContent: "space-between",
               alignItems: "center",
-              gap: "1rem"
+              flexWrap: "wrap",
+              gap: "2rem",
+              color: "var(--text-muted)",
+              fontSize: "0.95rem"
             }}>
-              <div className="brand" style={{ fontSize: "1.2rem", justifyContent: "center" }}>
-                <span className="brand-icon">⚡</span> Quiz Master Pro
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                <div className="brand" style={{ fontSize: "1.3rem", margin: 0 }}>
+                  <span className="brand-icon">⚡</span> QuizFlare
+                </div>
+                <p style={{ margin: 0 }}>© {new Date().getFullYear()} QuizFlare. All rights reserved.</p>
               </div>
-              <div style={{ display: "flex", gap: "20px" }}>
-                <a href="#" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Terms of Service</a>
-                <a href="#" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Privacy Policy</a>
-                <a href="#" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Contact Us</a>
+              
+              <div style={{ display: "flex", gap: "30px", fontWeight: "500" }}>
+                <Link to="/terms" style={{ color: "var(--text-muted)", textDecoration: "none", transition: "color 0.2s" }} onMouseOver={(e) => e.target.style.color = "var(--text-main)"} onMouseOut={(e) => e.target.style.color = "var(--text-muted)"}>Terms of Service</Link>
+                <Link to="/privacy" style={{ color: "var(--text-muted)", textDecoration: "none", transition: "color 0.2s" }} onMouseOver={(e) => e.target.style.color = "var(--text-main)"} onMouseOut={(e) => e.target.style.color = "var(--text-muted)"}>Privacy Policy</Link>
+                <Link to="/contact" style={{ color: "var(--text-muted)", textDecoration: "none", transition: "color 0.2s" }} onMouseOver={(e) => e.target.style.color = "var(--text-main)"} onMouseOut={(e) => e.target.style.color = "var(--text-muted)"}>Contact Us</Link>
               </div>
-              <p>© {new Date().getFullYear()} Quiz Master Pro. All rights reserved.</p>
             </footer>
           )}
         </main>

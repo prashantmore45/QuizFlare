@@ -20,7 +20,11 @@ function Login() {
     try {
       const res = await API.post("/auth/login", formData);
       login(res.data.token, res.data.user);
-      navigate("/dashboard");
+      if (res.data.user.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/dashboard");
+      }
     } catch (error) {
       alert(error.response?.data?.message || "Login failed");
     } finally {
