@@ -102,11 +102,14 @@ Your app will be running at `http://localhost:3000`.
 | `/api/auth/register` | POST | Register a new user | Public |
 | `/api/auth/login` | POST | Authenticate user & get token | Public |
 | `/api/auth/me` | GET | Get current logged-in user | Private |
-| `/api/quizzes` | GET | Get all available quizzes | Public |
-| `/api/quizzes` | POST | Create a new quiz | Admin |
-| `/api/quizzes/:id` | GET | Get a specific quiz | Public |
+| `/api/quizzes` | GET | Get all available quizzes | Private |
+| `/api/quizzes` | POST | Create a new quiz | Private (Admin) |
+| `/api/quizzes/:id` | GET | Get a specific quiz | Private |
 | `/api/results` | POST | Submit quiz answers | Private |
-| `/api/results/user`| GET | Get logged-in user's history | Private |
+| `/api/results/my-results`| GET | Get logged-in user's history | Private |
+| `/api/results/leaderboard`| GET | Get top performers | Public |
+| `/api/stats` | GET | Get platform statistics | Public |
+| `/api/contact` | POST | Submit a contact form | Public |
 
 ---
 
