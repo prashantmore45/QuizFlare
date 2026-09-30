@@ -55,8 +55,8 @@
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/prashantmore45/online-quiz-maker.git
-cd online-quiz-maker
+git clone https://github.com/prashantmore45/quizflare.git
+cd quizflare
 ```
 
 ### 2. Setup the Backend
