@@ -1,97 +1,121 @@
-# 📝 QuizMaster: Full-Stack Examination Platform
+# ⚡ QuizFlare 
 
-A dynamic, full-stack quiz application designed for seamless assessment creation and participation. Built with the **MERN Stack**, this platform features secure user authentication, real-time score calculation, and a mobile-responsive interface for learning on the go.
+![QuizFlare Banner](https://via.placeholder.com/1000x300/1e293b/8b5cf6?text=QuizFlare+-+The+Ultimate+Online+Quiz+Platform)
 
-## 🔴 Live Demo
-[Comming Soon]
+> A modern, premium, full-stack examination and quiz platform built with the MERN stack. Designed with a sleek glassmorphic UI, robust role-based access control, and dynamic progress analytics.
 
-## ⚙️ Backend API
-[Comming Soon]
+**[🔴 Live Demo](https://quizflare.vercel.app/)** | **[⚙️ Backend API](https://quizflare.onrender.com/)**
 
 ---
 
-## 🚀 Key Features
+## ✨ Key Features
 
-- **Secure Authentication**: Full JWT-based Login and Registration system to protect user data and quiz history.
-- **Dynamic Quiz Creation**: Intuitive interface for users to build custom quizzes with multiple-choice questions.
-- **Interactive Examination UI**: A **"One Question at a Time"** focus mode to improve user concentration and UX.
-- **Instant Analytics**: Real-time result calculation upon submission, providing immediate feedback to the learner.
-- **Responsive Design**: Fully optimized for desktops, tablets, and smartphones.
+### 🛡️ For Administrators
+- **Dashboard Overview**: Monitor total users, active quizzes, and system metrics at a glance.
+- **Quiz Management**: Create, edit, and delete quizzes with unlimited custom questions and options.
+- **User Management**: View registered users, track their progress, and oversee platform activity.
 
----
+### 🎓 For Users
+- **Progress Tracking**: Visualize your learning journey with a dedicated analytics dashboard showing your scores, average accuracy, and history.
+- **Focus Mode Examination**: A distraction-free, one-question-at-a-time interface for taking quizzes.
+- **Instant Results**: Get immediate feedback, scores, and correct answers upon quiz submission.
 
-## 🛠️ Technical Stack
-
-| Layer    | Technology |
-|----------|------------|
-| Frontend | React.js, CSS3 (Flexbox/Grid) |
-| Backend  | Node.js, Express.js |
-| Database | MongoDB Atlas (NoSQL) |
-| Security | JSON Web Tokens (JWT), Bcrypt.js |
-
----
-
-## 📂 Project Architecture
-
-The application follows a clean **Client–Server** architecture to ensure scalability and ease of maintenance:
-
-- **Frontend**: React components manage the state of the quiz and handle API calls via Axios/Fetch.
-- **Backend**: Express REST APIs handle business logic, such as validating quiz answers and managing user sessions.
-- **Database**: MongoDB stores user profiles, quiz metadata, and examination results.
+### 🎨 Design & UX
+- **Premium Glassmorphism**: Frosted glass effects, subtle gradients, and modern drop shadows.
+- **Dark/Light Mode**: Fully integrated theme toggling that persists across sessions.
+- **Responsive Architecture**: Flawless experience across desktops, tablets, and mobile devices with a smart sidebar and hamburger navigation.
+- **Custom Aesthetics**: Polished custom scrollbars and smooth micro-animations.
 
 ---
 
-## ⚙️ Local Development Setup
+## 🛠️ Technology Stack
 
-### 1) Prerequisites
-- Node.js (**v18+**)
-- MongoDB Atlas connection string
-- A Windows 11/Linux development environment (HP Victus or similar)
+**Frontend Architecture:**
+- React.js (v18)
+- React Router DOM (v6)
+- Lucide React (Iconography)
+- Axios (HTTP Client)
+- Custom Vanilla CSS3 (Variables, Grid, Flexbox, Media Queries)
+- Hosted on **Vercel**
 
-### 2) Installation
+**Backend Architecture:**
+- Node.js & Express.js
+- MongoDB & Mongoose (Database & ODM)
+- JSON Web Tokens (JWT) for stateless authentication
+- Bcrypt.js for secure password hashing
+- Hosted on **Render**
 
+---
+
+## 🚀 Getting Started Locally
+
+### Prerequisites
+- [Node.js](https://nodejs.org/en/) (v16 or higher)
+- A [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account and connection string.
+
+### 1. Clone the repository
 ```bash
-# Clone the repository
 git clone https://github.com/prashantmore45/online-quiz-maker.git
 cd online-quiz-maker
+```
 
-# Setup Backend
+### 2. Setup the Backend
+Open a new terminal and navigate to the backend directory:
+```bash
 cd backend
 npm install
-# Create a .env file with: MONGO_URI, JWT_SECRET, PORT
+```
+Create a `.env` file in the `backend` folder:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_super_secret_jwt_key
+```
+Start the backend server:
+```bash
 npm run dev
+```
 
-# Setup Frontend
-cd ../frontend
+### 3. Setup the Frontend
+Open a new terminal and navigate to the frontend directory:
+```bash
+cd frontend
 npm install
+```
+Create a `.env` file in the `frontend` folder:
+```env
+REACT_APP_API_URL=http://localhost:5000/api
+```
+Start the frontend development server:
+```bash
 npm start
 ```
 
----
-
-## 🔐 Environment Variables
-
-Create a `.env` file inside the `backend` folder:
-
-```env
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-PORT=5000
-```
+Your app will be running at `http://localhost:3000`.
 
 ---
 
-## 📜 Internship & Attribution
+## 🔗 API Endpoints Overview
 
-This project was developed as a **Level 2 Task** during my **Web Development Internship at CodSoft (Jan–Feb 2026)**.  
-It demonstrates core competencies in Full-Stack development, CRUD operations, and Secure API design.
+| Route | Method | Description | Access |
+|-------|--------|-------------|---------|
+| `/api/auth/register` | POST | Register a new user | Public |
+| `/api/auth/login` | POST | Authenticate user & get token | Public |
+| `/api/auth/me` | GET | Get current logged-in user | Private |
+| `/api/quizzes` | GET | Get all available quizzes | Public |
+| `/api/quizzes` | POST | Create a new quiz | Admin |
+| `/api/quizzes/:id` | GET | Get a specific quiz | Public |
+| `/api/results` | POST | Submit quiz answers | Private |
+| `/api/results/user`| GET | Get logged-in user's history | Private |
 
 ---
 
-## 👤 Author
+## 👨‍💻 Author
 
 **Prashant Maruti More**  
 Computer Engineering Student @ SPPU  
 
-- LinkedIn: https://www.linkedin.com/in/prashantmore45/
-- GitHub: https://github.com/prashantmore45
+- 🔗 LinkedIn: [prashantmore45](https://www.linkedin.com/in/prashantmore45/)
+- 💻 GitHub: [prashantmore45](https://github.com/prashantmore45)
+
+*This project was initiated as a Level 2 Task during a Web Development Internship at CodSoft (Jan–Feb 2026) and was significantly expanded into a full-scale application.*
