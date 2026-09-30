@@ -254,9 +254,7 @@ input::placeholder { color: #52525b; }
   gap: 16px;
 }
 
-.mobile-only-brand {
-  display: none;
-}
+.mobile-only-brand { display: none !important; }
 
 .hamburger {
   background: transparent;
