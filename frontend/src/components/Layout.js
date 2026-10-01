@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { LayoutDashboard, PenLine, Target, Trophy, History, TrendingUp, PanelLeftClose, PanelLeftOpen, Shield, LogOut, User, Menu, Sparkles, Sun, Moon } from "lucide-react";
+import { LayoutDashboard, PenLine, Target, Trophy, History, TrendingUp, PanelLeftClose, PanelLeftOpen, Shield, LogOut, User, Menu, Sparkles, Sun, Moon, Zap } from "lucide-react";
 import "../App.css";
 
 const Layout = ({ children }) => {
@@ -66,7 +66,7 @@ const Layout = ({ children }) => {
           <aside className={`layout-sidebar ${!sidebarOpen ? "collapsed" : ""}`}>
             <div className="sidebar-header">
               <div className="brand" onClick={() => navigate("/")}>
-                <span className="brand-icon">⚡</span>
+                <Zap size={24} color="var(--accent-color)" />
                 <span className="brand-text">QuizFlare</span>
               </div>
               <button className="hamburger" onClick={() => setSidebarOpen(!sidebarOpen)}>
@@ -137,7 +137,7 @@ const Layout = ({ children }) => {
             <div className="header-left">
               {/* Show brand unconditionally but hide it on desktop when logged in using CSS */}
               <div className={`brand ${showSidebar ? "mobile-only-brand" : ""}`} onClick={() => navigate("/")}>
-                <span className="brand-icon">⚡</span> QuizFlare
+                <Zap size={24} color="var(--accent-color)" /> QuizFlare
               </div>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
@@ -248,7 +248,7 @@ const Layout = ({ children }) => {
             <footer className="layout-footer">
               <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 <div className="brand" style={{ fontSize: "1.3rem", margin: 0 }}>
-                  <span className="brand-icon">⚡</span> QuizFlare
+                  <Zap size={24} color="var(--accent-color)" /> QuizFlare
                 </div>
                 <p style={{ margin: 0 }}>© {new Date().getFullYear()} QuizFlare. All rights reserved.</p>
               </div>
@@ -267,5 +267,6 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
+
 
 

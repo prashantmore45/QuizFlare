@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
+import { Trophy, PartyPopper } from "lucide-react";
 
 function Result() {
   const { state } = useLocation();
@@ -24,7 +25,7 @@ function Result() {
     <Layout>
       <div className="container" style={{ maxWidth: "800px" }}>
         <h2 style={{ textAlign: "center", marginBottom: "30px", fontSize: "2.5rem" }}>
-          {isPerfect ? "Perfect Score! 🏆" : "Quiz Completed 🎉"}
+          {isPerfect ? <><Trophy size={28} color="#fbbf24" style={{ verticalAlign: "middle", marginRight: "8px" }} /> Perfect Score!</> : <><PartyPopper size={28} color="#3b82f6" style={{ verticalAlign: "middle", marginRight: "8px" }} /> Quiz Completed</>}
         </h2>
         
         <div className="glass-panel" style={{ 

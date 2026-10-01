@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import { useAuth } from "../context/AuthContext";
 import Layout from "../components/Layout";
+import { Zap, ArrowRight, Wand2, BarChart, Trophy, ShieldCheck } from "lucide-react";
 
 function Home() {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ function Home() {
             justifyContent: "center"
           }}>
             <div style={{ display: "flex", alignItems: "center", marginBottom: "16px" }}>
-              <span className="hero-icon" style={{ marginBottom: 0, marginRight: "12px" }}>⚡</span>
+              <Zap size={32} color="var(--accent-color)" style={{ marginRight: "12px" }} />
               <span style={{ color: "var(--accent-color)", fontWeight: "bold", letterSpacing: "1px", textTransform: "uppercase" }}>The #1 Quiz Platform</span>
             </div>
             <h1 className="hero-title" style={{ marginBottom: "24px", lineHeight: "1.1", paddingBottom: "15px" }}>Master Your Knowledge</h1>
@@ -62,7 +63,7 @@ function Home() {
             </p>
             <div className="hero-buttons">
               {isLoggedIn ? (
-                <button className="btn-primary-large" onClick={() => navigate("/dashboard")}>Go to Dashboard 🚀</button>
+                <button className="btn-primary-large" onClick={() => navigate("/dashboard")}>Go to Dashboard <ArrowRight size={18} style={{ marginLeft: "8px", verticalAlign: "middle" }} /></button>
               ) : (
                 <>
                   <button className="btn-primary-large" onClick={() => navigate("/register")}>Get Started Free</button>
@@ -117,28 +118,28 @@ function Home() {
         <div className="features-grid">
           <div className="feature-card">
             <div className="feature-icon-wrapper">
-              <span className="feature-icon">✨</span>
+              <Wand2 size={36} color="var(--accent-color)" />
             </div>
             <h3>Lightning Fast Creation</h3>
             <p>Build stunning, interactive quizzes in minutes using our drag-and-drop editor. Zero coding required.</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon-wrapper">
-              <span className="feature-icon">🎯</span>
+              <BarChart size={36} color="var(--accent-color)" />
             </div>
             <h3>Deep Analytics</h3>
             <p>Gain actionable insights with detailed performance reports, completion rates, and question analysis.</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon-wrapper">
-              <span className="feature-icon">🌍</span>
+              <Trophy size={36} color="var(--accent-color)" />
             </div>
             <h3>Global Leaderboards</h3>
             <p>Foster healthy competition with real-time global leaderboards and instant push notifications.</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon-wrapper">
-              <span className="feature-icon">🛡️</span>
+              <ShieldCheck size={36} color="var(--accent-color)" />
             </div>
             <h3>Enterprise Security</h3>
             <p>Your data is protected by industry-leading encryption and robust privacy controls.</p>
@@ -222,3 +223,6 @@ function Home() {
 }
 
 export default Home;
+
+
+
